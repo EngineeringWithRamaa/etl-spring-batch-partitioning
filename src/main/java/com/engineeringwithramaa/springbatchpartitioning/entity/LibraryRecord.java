@@ -1,13 +1,14 @@
 package com.engineeringwithramaa.springbatchpartitioning.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name="Library_Record_Partitions")
 public class LibraryRecord {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     private Long recordId;
     private String recordType;
     private String bnbNumber;
@@ -27,6 +28,7 @@ public class LibraryRecord {
                          String name, String country, String place,
                          String publisher, String dateOfPublication,
                          String physicalDescription, String deweyClassification, String languages) {
+        this.id = Long.valueOf(0);
         this.recordId = recordId;
         this.recordType = recordType;
         this.bnbNumber = bnbNumber;
@@ -39,7 +41,12 @@ public class LibraryRecord {
         this.deweyClassification = deweyClassification;
         this.languages = languages;
     }
-
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Long getRecordId() {
         return recordId;
     }
@@ -132,6 +139,7 @@ public class LibraryRecord {
     @Override
     public String toString() {
         return "LibraryRecord{" +
+                "UUID=" + id +
                 "recordId=" + recordId +
                 ", recordType='" + recordType + '\'' +
                 ", bnbNumber='" + bnbNumber + '\'' +

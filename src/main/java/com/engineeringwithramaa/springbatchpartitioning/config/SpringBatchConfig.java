@@ -40,7 +40,7 @@ public class SpringBatchConfig {
     @Bean
     public PartitionHandler libraryRecordPartitionerHandler() {
         TaskExecutorPartitionHandler taskExecutorPartitionHandler = new TaskExecutorPartitionHandler();
-        taskExecutorPartitionHandler.setGridSize(9);
+        taskExecutorPartitionHandler.setGridSize(3);
         taskExecutorPartitionHandler.setTaskExecutor(libraryRecordTaskExecutor());
         taskExecutorPartitionHandler.setStep(libraryRecordSlaveStep());
         return taskExecutorPartitionHandler;
@@ -74,9 +74,9 @@ public class SpringBatchConfig {
     @Bean
     public TaskExecutor libraryRecordTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setMaxPoolSize(9);
-        taskExecutor.setCorePoolSize(9);
-        taskExecutor.setQueueCapacity(9);
+        taskExecutor.setMaxPoolSize(5);
+        taskExecutor.setCorePoolSize(5);
+        taskExecutor.setQueueCapacity(5);
         return taskExecutor;
     }
 

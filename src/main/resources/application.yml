@@ -1,0 +1,17 @@
+spring:
+  batch:
+    initialize-schema: always
+    job:
+      enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/users_db
+    username: root
+    password:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+input1: file:/I:/2022/IntelliJ Workspace/spring-batch-partitioning/src/main/resources/BritishLibrary-records1.csv

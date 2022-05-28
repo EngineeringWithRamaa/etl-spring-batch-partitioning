@@ -40,7 +40,7 @@ public class SpringBatchConfig {
     @Bean
     public PartitionHandler libraryRecordPartitionerHandler() {
         TaskExecutorPartitionHandler taskExecutorPartitionHandler = new TaskExecutorPartitionHandler();
-        taskExecutorPartitionHandler.setGridSize(5);
+        taskExecutorPartitionHandler.setGridSize(9);
         taskExecutorPartitionHandler.setTaskExecutor(libraryRecordTaskExecutor());
         taskExecutorPartitionHandler.setStep(libraryRecordSlaveStep());
         return taskExecutorPartitionHandler;
@@ -49,7 +49,7 @@ public class SpringBatchConfig {
     @Bean
     public Step libraryRecordSlaveStep() {
         return stepBuilderFactory.get("Slave Step")
-                .<LibraryRecord, LibraryRecord>chunk(10000)
+                .<LibraryRecord, LibraryRecord>chunk(20000)
                 .reader(LibraryRecordReader)
                 .processor(LibraryRecordProcessor)
                 .writer(LibraryRecordWriter)
@@ -74,9 +74,9 @@ public class SpringBatchConfig {
     @Bean
     public TaskExecutor libraryRecordTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setMaxPoolSize(5);
-        taskExecutor.setCorePoolSize(5);
-        taskExecutor.setQueueCapacity(5);
+        taskExecutor.setMaxPoolSize(9);
+        taskExecutor.setCorePoolSize(9);
+        taskExecutor.setQueueCapacity(9);
         return taskExecutor;
     }
 

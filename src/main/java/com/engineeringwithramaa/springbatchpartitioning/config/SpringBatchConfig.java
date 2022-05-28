@@ -49,7 +49,7 @@ public class SpringBatchConfig {
     @Bean
     public Step libraryRecordSlaveStep() {
         return stepBuilderFactory.get("Slave Step")
-                .<LibraryRecord, LibraryRecord>chunk(5000)
+                .<LibraryRecord, LibraryRecord>chunk(10000)
                 .reader(LibraryRecordReader)
                 .processor(LibraryRecordProcessor)
                 .writer(LibraryRecordWriter)
